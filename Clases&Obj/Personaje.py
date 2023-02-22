@@ -1,12 +1,13 @@
 class Personaje:
     
-    #atributos Personaje
-    especie= "Humano"
-    nombre= "Master Chief"
-    altura= "2.70"
+    #Constuctor con paramentros de inializacion
+    def __init__ (self, esp,nom, alt):
+        self.especie= esp
+        self.nombre= nom
+        self.altura= alt
+    
     
     #Metodos Personaje
-    
     def correr(self,status):
         if(status):
             print("El personaje "+ self.nombre +" esta corriendo")
