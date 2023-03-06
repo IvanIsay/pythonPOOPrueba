@@ -8,9 +8,12 @@ class logica:
         
     def validarCredenciales(self,correo,contra):
         
-        if(self.__correoC == correo and self.__contraC == contra):
-            messagebox.showinfo("Exito","Bienvenido al sistema")
+        if(correo == "" or contra == ""):
+             messagebox.showwarning("Cuidado","Usuario y contraseña debe contener algo")
         else:
-            messagebox.showerror("Error","Revisa tus credenciales")
+            if(self.__correoC == correo and self.__contraC == contra):
+                messagebox.showinfo("Exito","Bienvenido al sistema")
+            else:
+                messagebox.showerror("Error","Revisa tus credenciales")
             
         

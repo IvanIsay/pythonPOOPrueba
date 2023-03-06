@@ -31,7 +31,5 @@ botonAcesso= Button(seccion1,text="Acceder", bg="green" , command= ejecutaVal)
 botonAcesso.pack()
 
 
-
-
 #Main
 Ventana.mainloop()
