@@ -34,6 +34,5 @@ class login:
         self.__botonAcesso= Button(self.__seccion1,text="Acceder", bg="green", command=ejecutaVal )
         self.__botonAcesso.pack()
 
-
         #Main
         self.__Ventana.mainloop()
