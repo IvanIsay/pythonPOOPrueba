@@ -1,5 +1,6 @@
 from tkinter import messagebox
 import sqlite3
+import bcrypt
 
 
 class logica:
@@ -18,19 +19,47 @@ class logica:
             else:
                 messagebox.showerror("Error","Revisa tus credenciales")
             
- 
-    def IngresarUsuario(self,nom,cor,con):
-        
+    def conexionUsuarios(self):
         try:
-            conexion=sqlite3.connect("Usuarios.db")
+            conexion=sqlite3.connect("c:/Users/iigue/OneDrive/Documentos/pythonPOOPrueba/registroBD/Usuariox.db")
             print("Conectado a BD")
+            return conexion
         except sqlite3.OperationalError:
             print("No se pudo conectar a la BD")
-                 
-        if(cor == "" or con == "" or nom== ""):
+     
+    def encriptarpass(self,con):
+          passPlana=con
+          passPlana= passPlana.encode() #convertirla en bytes
+          sal= bcrypt.gensalt()
+          passHa= bcrypt.hashpw(passPlana,sal)
+          print(passHa)
+          return passHa
+        
+    def IngresarUsuario(self,nom,cor,con):
+        
+        conexion= self.conexionUsuarios()
+               
+        if( nom== "" or cor == "" or  con == "" ):
              messagebox.showwarning("Cuidado","Formulario Incompleto")
+             conexion.close()
         else:
-            conexion.execute("insert into usuario(nombre,correo,pass) values(?,?,?)",(nom,cor,con))
+            cursor= conexion.cursor()
+            conH= self.encriptarpass(con)
+            datos=(nom,cor,conH)
+            sqlinsert="insert into registrados(nombre,correo,pass) values(?,?,?)"
+            
+            cursor.execute(sqlinsert,datos)
             conexion.commit()
             conexion.close()
             messagebox.showinfo("Exito","Usuario agregado en BD")
+            
+            
+            
+            
+        """
+        PARA ENCRYPTAR PASS
+        1. INSTALAR BCRYPT
+        - pip install bcrypt
+        
+        
+        """

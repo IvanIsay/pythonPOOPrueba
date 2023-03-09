@@ -12,6 +12,7 @@ class login:
 
         def ejecutaInsert():
             axc.IngresarUsuario(self.__var1.get(),self.__var2.get(),self.__var3.get())
+ 
          
         self.__Ventana= Tk()
         self.__Ventana.title("Login")
