@@ -21,7 +21,7 @@ class login:
         self.__seccion1= Frame(self.__Ventana)
         self.__seccion1.pack(expand= True, fill= 'both')
 
-        self.__titulo= Label(self.__seccion1,text="Registro Usuario",bg="black", fg="white", font=("Helvetica", 18)).pack()
+        self.__titulo= Label(self.__seccion1,text="Registro Usuario", font=("Helvetica", 18)).pack()
 
         self.__var1 = tk.StringVar()
         self.__lblNombre= Label(self.__seccion1,text="Nombre: ").pack()

@@ -53,7 +53,18 @@ class logica:
             conexion.close()
             messagebox.showinfo("Exito","Usuario agregado en BD")
             
+    def consultatodos(self):
+        conexion= self.conexionUsuarios()
+        try:
+            cursor= conexion.cursor()
+            sqlSelect= "select * from registrados"
+            cursor.execute(sqlSelect)    
+            usuarios= cursor.fetchall()
+            conexion.close()
+            return usuarios
             
+        except sqlite3.OperationalError:
+            print("No se pudo conectar a la BD")       
             
             
         """
