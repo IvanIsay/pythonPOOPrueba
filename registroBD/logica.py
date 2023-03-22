@@ -6,22 +6,12 @@ import bcrypt
 class logica:
     
     def __init__(self):
-        self.__correoC= "iiguerra@outlook.com"
-        self.__contraC="1a2b3c4d"
-        
-    def validarCredenciales(self,correo,contra):
-        
-        if(correo == "" or contra == ""):
-             messagebox.showwarning("Cuidado","Usuario y contraseña debe contener algo")
-        else:
-            if(self.__correoC == correo and self.__contraC == contra):
-                messagebox.showinfo("Exito","Bienvenido al sistema")
-            else:
-                messagebox.showerror("Error","Revisa tus credenciales")
+        pass
+
             
     def conexionUsuarios(self):
         try:
-            conexion=sqlite3.connect("c:/Users/iigue/OneDrive/Documentos/pythonPOOPrueba/registroBD/Usuariox.db")
+            conexion=sqlite3.connect("C:/Users/lOkY/Documents/GitHub/pythonPOOPrueba/registroBD/Usuariox.db")
             print("Conectado a BD")
             return conexion
         except sqlite3.OperationalError:
@@ -46,13 +36,37 @@ class logica:
             cursor= conexion.cursor()
             conH= self.encriptarpass(con)
             datos=(nom,cor,conH)
-            sqlinsert="insert into registrados(nombre,correo,pass) values(?,?,?)"
+            sqlinsert="insert into registrados(nombre,correo,contra) values(?,?,?)"
             
             cursor.execute(sqlinsert,datos)
             conexion.commit()
             conexion.close()
             messagebox.showinfo("Exito","Usuario agregado en BD")
             
+    
+    def buscaUsuario(self,id):
+        conexion= self.conexionUsuarios()
+        if( id == "" ):
+             messagebox.showwarning("Cuidado","Escribe un Id Valido")
+             conexion.close()
+
+        else: 
+            
+            try:
+                cursor= conexion.cursor()
+                sqlSelect= "select * from registrados where id ="+id
+                cursor.execute(sqlSelect)    
+                usuario= cursor.fetchall()
+                conexion.close()
+                return usuario
+            
+            except sqlite3.OperationalError:
+                print("Error Consulta")       
+            
+    
+    
+    
+    
     def consultatodos(self):
         conexion= self.conexionUsuarios()
         try:
@@ -64,7 +78,7 @@ class logica:
             return usuarios
             
         except sqlite3.OperationalError:
-            print("No se pudo conectar a la BD")       
+            print("Error Consulta")       
             
             
         """
