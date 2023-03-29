@@ -31,6 +31,7 @@ pestaña1= ttk.Frame(panel)
 pestaña2= ttk.Frame(panel)
 pestaña3= ttk.Frame(panel)
 pestaña4= ttk.Frame(panel)
+pestaña5= ttk.Frame(panel)
 
 
 # Pestaña1: Formulario Registro
@@ -75,6 +76,7 @@ panel.add(pestaña1,text="Agregar Usuarios")
 panel.add(pestaña2,text="Buscar Usuario")
 panel.add(pestaña3,text="Consultar Usuarios")
 panel.add(pestaña4,text="Actualizar Usuario")
+panel.add(pestaña5,text="Eliminar Usuario")
 
 Ventana.mainloop()
 
